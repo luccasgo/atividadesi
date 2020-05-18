@@ -43,6 +43,11 @@ public class LivroController {
 		return new ResponseEntity<Livro>(service.buscarLivroPorNome(titulo), HttpStatus.OK);
 	}
 	
+	@GetMapping("{id}")
+	public ResponseEntity<Livro> buscarLivroPorId(@RequestParam Long id){
+		return new ResponseEntity<Livro>(HttpStatus.OK);
+	}
+	
 	@GetMapping
 	public ResponseEntity<List<Livro>> buscarTodos(){
 		return new ResponseEntity<List<Livro>>(service.buscarTodos(), HttpStatus.OK);

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Livro {
@@ -11,7 +12,8 @@ public class Livro {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String titulo;
-	private String editora;
+	@ManyToOne
+	private Editora editora;
 	private Integer quantidadePaginas;
 	public Long getId() {
 		return id;
@@ -25,10 +27,10 @@ public class Livro {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getEditora() {
+	public Editora getEditora() {
 		return editora;
 	}
-	public void setEditora(String editora) {
+	public void setEditora(Editora editora) {
 		this.editora = editora;
 	}
 	public Integer getQuantidadePaginas() {
