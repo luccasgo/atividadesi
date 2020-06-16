@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 public class CadastrarEditarLivroDTO {
 	private String titulo;
 	@NotNull
-	private Long editora;
+	private String editora;
 	private Integer quantidadePaginas;
 	public String getTitulo() {
 		return titulo;
@@ -13,10 +13,10 @@ public class CadastrarEditarLivroDTO {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public Long getEditora() {
+	public String getEditora() {
 		return editora;
 	}
-	public void setEditora(Long editora) {
+	public void setEditora(String editora) {
 		this.editora = editora;
 	}
 	public Integer getQuantidadePaginas() {

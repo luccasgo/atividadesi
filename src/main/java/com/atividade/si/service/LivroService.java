@@ -21,13 +21,13 @@ public class LivroService {
 	private EditoraService editoraService;
 
 	public Livro cadastrarLivro(CadastrarEditarLivroDTO dto) throws NotFoundException {
-		Editora ed = editoraService.buscarPorId(dto.getEditora());
+		Editora ed = editoraService.buscarPorNome(dto.getEditora());
 		Livro livro = LivroMapper.mapper(dto, ed);
 		return dao.save(livro);
 	}
 
 	public Livro editarLivroPorId(CadastrarEditarLivroDTO dto, Long id) throws NotFoundException {
-		Editora ed = editoraService.buscarPorId(dto.getEditora());
+		Editora ed = editoraService.buscarPorNome(dto.getEditora());
 		Livro livro = dao.findById(id).orElseThrow(() -> new NotFoundException("Livro não existe para ser editado."));
 		Livro livroTemp = LivroMapper.mapper(dto, livro, ed);
 		return dao.save(livroTemp);
