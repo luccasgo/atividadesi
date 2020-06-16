@@ -7,5 +7,6 @@ import com.atividade.si.model.Editora;
 
 @Repository
 public interface EditoraDAO extends JpaRepository<Editora, Long>{
-	public Editora findByNome(String nome);
+	public Editora findByNomeContaining(String nome);
+	
 }

@@ -20,7 +20,7 @@ public class SwaggerConfig {
 	public Docket produzApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select().apis(RequestHandlerSelectors
-						.basePackage("com.atividade.pp.rest"))
+						.basePackage("com.atividade.si.rest"))
 				.paths(PathSelectors.any()).build()
 				.apiInfo(metaInfo());		
 	}

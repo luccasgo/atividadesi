@@ -1,8 +1,11 @@
 package com.atividade.si.dto;
 
+import javax.validation.constraints.NotNull;
+
 public class CadastrarEditarLivroDTO {
 	private String titulo;
-	private String editora;
+	@NotNull
+	private Long editora;
 	private Integer quantidadePaginas;
 	public String getTitulo() {
 		return titulo;
@@ -10,10 +13,10 @@ public class CadastrarEditarLivroDTO {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getEditora() {
+	public Long getEditora() {
 		return editora;
 	}
-	public void setEditora(String editora) {
+	public void setEditora(Long editora) {
 		this.editora = editora;
 	}
 	public Integer getQuantidadePaginas() {

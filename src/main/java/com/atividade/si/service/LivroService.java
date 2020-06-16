@@ -1,7 +1,6 @@
 package com.atividade.si.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +20,14 @@ public class LivroService {
 	@Autowired
 	private EditoraService editoraService;
 
-	public Livro cadastrarLivro(CadastrarEditarLivroDTO dto) {
-		Editora ed = editoraService.buscarPorNome(dto.getEditora());
+	public Livro cadastrarLivro(CadastrarEditarLivroDTO dto) throws NotFoundException {
+		Editora ed = editoraService.buscarPorId(dto.getEditora());
 		Livro livro = LivroMapper.mapper(dto, ed);
 		return dao.save(livro);
 	}
 
 	public Livro editarLivroPorId(CadastrarEditarLivroDTO dto, Long id) throws NotFoundException {
-		Editora ed = editoraService.buscarPorNome(dto.getEditora());
+		Editora ed = editoraService.buscarPorId(dto.getEditora());
 		Livro livro = dao.findById(id).orElseThrow(() -> new NotFoundException("Livro não existe para ser editado."));
 		Livro livroTemp = LivroMapper.mapper(dto, livro, ed);
 		return dao.save(livroTemp);
@@ -46,7 +45,8 @@ public class LivroService {
 		dao.deleteById(id);
 	}
 	
-	public Optional<Livro> buscarLivroPorId(Long id) {
-		return dao.findById(id);
+	public Livro buscarLivroPorId(Long id) throws NotFoundException {
+		Livro livro = dao.findById(id).orElseThrow(() -> new NotFoundException("Livro não encontrado."));
+		return livro;
 	}
 }

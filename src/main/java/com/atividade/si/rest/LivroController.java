@@ -27,7 +27,7 @@ public class LivroController {
 	private LivroService service;
 	
 	@PostMapping
-	public ResponseEntity<CadastrarEditarLivroDTO> cadastrarLivro(@RequestBody CadastrarEditarLivroDTO dto){
+	public ResponseEntity<CadastrarEditarLivroDTO> cadastrarLivro(@RequestBody CadastrarEditarLivroDTO dto) throws NotFoundException{
 		service.cadastrarLivro(dto);
 		return new ResponseEntity<CadastrarEditarLivroDTO>(HttpStatus.CREATED);
 	}
@@ -44,8 +44,8 @@ public class LivroController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<Livro> buscarLivroPorId(@RequestParam Long id){
-		return new ResponseEntity<Livro>(HttpStatus.OK);
+	public ResponseEntity<Livro> buscarLivroPorId(Long id) throws NotFoundException{
+		return new ResponseEntity<Livro>(service.buscarLivroPorId(id),HttpStatus.OK);
 	}
 	
 	@GetMapping
